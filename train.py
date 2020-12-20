@@ -60,10 +60,13 @@ os.makedirs('output_%s/tensorboard'%key, exist_ok=True)
 
 callbacks = [
     tf.keras.callbacks.ModelCheckpoint(
-        filepath="output_%s/*epoch*.h5"%key,
-        monitor='acc', mode='auto',
-        save_best_only='True'),
-    tf.keras.callbacks.TensorBoard(log_dir='output_%s/tensorboard'%key)
+        filepath="output_%s/model.h5"%key,
+        monitor='acc', mode='auto', save_best_only=True,
+        save_weights_only='True'),
+    tf.keras.callbacks.TensorBoard(log_dir='output_%s/tensorboard'%key,
+                                   histogram_freq=1,
+                                   write_grads=True,
+                                   write_images=True)
 ]
 
 m.fit(G_tra,

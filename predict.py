@@ -15,8 +15,8 @@ import load_batch
 import models
 
 ds = 'dataset1'
-input_height = 64
-input_width = 64
+input_height = 320
+input_width = 320
 n_classes = 11
 
 key = "unet"
@@ -74,7 +74,7 @@ def getcenteroffset(shape, input_height, input_width):
 
 # m = load_model("output/%s_model.h5" % key)
 m = method[key](11, input_height=input_height, input_width=input_width)
-m.load_weights("output/%s_model.h5" % key)
+m.load_weights("output_%s/model.h5" % key)
 
 for i, (imgName, segName) in enumerate(zip(images, segmentations)):
     print("%04d/%04d %s"%(i + 1, len(images), imgName))
